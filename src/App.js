@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import TopRow from "./TopRow"
 
 
 function App() {
@@ -17,18 +18,11 @@ function App() {
   return (
     <div className="container">
       <section className="scoreboard">
-        <div className="topRow">
-          <div className="home">
-            <h2 className="home__name">Lions</h2>
-            {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
-            <div className="home__score">{homeScore}</div>
-          </div>
-          <div className="timer">00:03</div>
-          <div className="away">
-            <h2 className="away__name">Tigers</h2>
-            <div className="away__score">{awayScore}</div>
-          </div>
-        </div>
+        <TopRow 
+          homeScore={homeScore}
+          awayScore={awayScore}
+        />
+
         <BottomRow 
           down={down} 
           toGo={toGo}
@@ -107,7 +101,7 @@ function App() {
             className="awayButtons__fieldGoal">
             Gain Yard
           </button>
-
+          
           <button 
             onClick ={() => {
               if (quarter === 4) {
@@ -117,6 +111,7 @@ function App() {
                 setToGo(10)
                 setBallOn(50)
                 setQuarter(1)
+                setPossession(false)
               } else {
                 setQuarter(quarter + 1)
               }
